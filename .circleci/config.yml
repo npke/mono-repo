@@ -3,6 +3,7 @@ jobs:
   build:
     docker: 
       - image: circleci/node:8.10
+    working_directory: ~/mono-repo
     steps:
       - run:
           name: List files
