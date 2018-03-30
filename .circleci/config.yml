@@ -5,6 +5,9 @@ jobs:
       - image: circleci/node:8.10
     steps:
       - run:
+          name: List files
+          command: ls -la
+      - run:
           name: Detect changes
           command: |
             API_CHANGED=`git diff HEAD^ HEAD packages/api | grep -m 1 "packages/api"`
