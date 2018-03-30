@@ -1,0 +1,9 @@
+version: 2
+jobs:
+  build:
+    steps:
+      - run:
+          name: Detect changes
+          command: |
+            API_CHANGED=`git diff HEAD^ HEAD | grep "packages/api"`
+            CMS_CHANGED=`git diff HEAD^ HEAD | grep "packages/cms"`
