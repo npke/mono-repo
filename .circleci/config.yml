@@ -5,6 +5,7 @@ jobs:
       - image: circleci/node:8.10
     working_directory: ~/mono-repo
     steps:
+      - checkout
       - run:
           name: List files
           command: ls -la ~/mono-repo
