@@ -24,6 +24,9 @@ jobs:
               touch build-cms.job
             fi
       - run:
+          name: Root install
+          command: npm install
+      - run:
           name: Install
           command: |
             BUILD_API=`ls | grep "build-api.job"`
