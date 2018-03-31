@@ -13,13 +13,13 @@ jobs:
           name: Detect changes
           command: |
             API_CHANGED=`git diff HEAD^ HEAD packages/api | grep -m 1 "packages/api"`
-            if [ $API_CHANGED != "" ]
+            if [ "${API_CHANGED}" != "" ]
             then
               touch build-api.job
             fi
 
             CMS_CHANGED=`git diff HEAD^ HEAD packages/cms | grep -m 1 "packages/cms"`
-            if [ $CMS_CHANGED != "" ]
+            if [ "${CMS_CHANGED}" != "" ]
             then
               touch build-cms.job
             fi
@@ -29,42 +29,38 @@ jobs:
       - run:
           name: Install
           command: |
-            BUILD_API=`ls | grep "build-api.job"`
-            if [ $BUILD_API != "" ]
+            if [ -e build-api.job ]
             then
-              lerna boostrap --scope api
+              lerna bootstrap --scope api
             fi
 
-            BUILD_CMS=`ls | grep "build-cms.job"`
-            if [ $BUILD_CMS != "" ]
+            if [ -e build-cms.job ]
             then
-              lerna boostrap --scope cms
+              lerna bootstrap --scope cms
             fi
       - run:
           name: Test
           command: |
-            BUILD_API=`ls | grep "build-api.job"`
-            if [ $BUILD_API != "" ]
+            if [ -e build-api.job ]
             then
+              echo "Testing api repo..."
               cd packages/api && npm test
             fi
 
-            BUILD_API=`ls | grep "build-cms.job"`
-            if [ $BUILD_CMS != "" ]
+            if [ -e build-cms.job ]
             then
+              echo "Testing cms repo..."
               cd packages/cms && npm test
             fi
       - run:
           name: Deploy
           command: |
-            BUILD_API=`ls | grep "build-api.job"`
-            if [ $BUILD_API != "" ]
+            if [ -e build-api.job ]
             then
               cd packages/api && echo "Deploy new build of RESTful API server"
             fi
 
-            BUILD_API=`ls | grep "build-cms.job"`
-            if [ $BUILD_CMS != "" ]
+           if [ -e build-cms.job ]
             then
               cd packages/cms && echo "Deploy new build of CMS server"
             fi
