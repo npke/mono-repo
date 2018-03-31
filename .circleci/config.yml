@@ -13,21 +13,23 @@ jobs:
           name: Install lerna
           command: sudo npm install -g lerna
       - run:
-          name: Detect changes
+          name: Detect changes in api repo
           command: |
             API_CHANGED=`git diff HEAD^ HEAD packages/api | grep -m 1 "packages/api"`
             if [ "${API_CHANGED}" != "" ]
             then
               touch build-api.job
             fi
-
+      - run:
+          name: Detect changes in cms repo
+          command: |
             CMS_CHANGED=`git diff HEAD^ HEAD packages/cms | grep -m 1 "packages/cms"`
             if [ "${CMS_CHANGED}" != "" ]
             then
               touch build-cms.job
             fi
       - run:
-          name: Test
+          name: Test for api repo
           command: |
             if [ -e build-api.job ]
             then
@@ -41,13 +43,23 @@ jobs:
               cd packages/cms && npm test
             fi
       - run:
-          name: Deploy
+          name: Test for cms repo
           command: |
-            if [ -e build-api.job ]
+            if [ -e build-cms.job ]
             then
-              cd packages/api && echo "Deploy new build of RESTful API server"
+              echo "Testing cms repo..."
+              cd packages/cms && npm test
             fi
-
+      - run:
+          name: Deploy api repo
+          command: |
+            if [ -e build-cms.job ]
+            then
+              cd packages/cms && echo "Deploy new build of CMS server"
+            fi
+      - run:
+          name: Deploy cms repo
+          command: |
             if [ -e build-cms.job ]
             then
               cd packages/cms && echo "Deploy new build of CMS server"
