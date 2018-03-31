@@ -28,7 +28,7 @@ jobs:
           command: npm install
       - run:
           name: Install lerna
-          command: npm install -g lerna
+          command: sudo npm install -g lerna
       - run:
           name: Test
           command: |
