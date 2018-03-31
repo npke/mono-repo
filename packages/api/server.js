@@ -13,7 +13,7 @@ server.route([
     method: 'GET',
     path: '/',
     handler: () => ({
-      message: 'Hello message from RESTful API server',
+      message: 'Hello from RESTful API server',
       services: { S3, Mailer },
       models,
     }),
