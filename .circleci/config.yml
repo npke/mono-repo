@@ -23,6 +23,7 @@ jobs:
             then
               echo "API repo was changed. Setting up build..."
               touch build-api.job
+              lerna bootstrap --scope api
             fi
       - run:
           name: Detect changes in cms repo
@@ -35,6 +36,7 @@ jobs:
             then
               echo "CMS repo was changed. Setting up build..."
               touch build-cms.job
+              lerna bootstrap --scope cms
             fi
       - run:
           name: Test for api repo
