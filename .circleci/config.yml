@@ -27,17 +27,8 @@ jobs:
           name: Root install
           command: npm install
       - run:
-          name: Install
-          command: |
-            if [ -e build-api.job ]
-            then
-              lerna bootstrap --scope api
-            fi
-
-            if [ -e build-cms.job ]
-            then
-              lerna bootstrap --scope cms
-            fi
+          name: Install lerna
+          command: npm install -g lerna
       - run:
           name: Test
           command: |
