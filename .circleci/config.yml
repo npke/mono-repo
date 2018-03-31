@@ -17,7 +17,7 @@ jobs:
           command: |
             COMMIT_RANGE=$(echo $CIRCLE_COMPARE_URL | sed 's:^.*/compare/::g')
             echo "Commit range:" $COMMIT_RANGE
-            echo `git diff $COMMIT_RANGE --name-status packages/api`
+            echo `git diff $COMMIT_RANGE --name-status packages/api | grep -m 1 "packages/api"`
             API_CHANGED=$(git diff $COMMIT_RANGE --name-status packages/api | grep -m 1 "packages/api")
             if [ "${API_CHANGED}" != "" ]
             then
