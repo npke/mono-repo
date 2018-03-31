@@ -30,7 +30,7 @@ jobs:
             COMMIT_RANGE=$(echo $CIRCLE_COMPARE_URL | sed 's:^.*/compare/::g')
             echo "Commit range:" $COMMIT_RANGE
             echo `git diff $COMMIT_RANGE --name-status packages/cms`
-            CMS_CHANGED=$(git diff $COMMIT_RANGE --name-status packages/cms | grep -m 1 "packages/cms")
+            CMS_CHANGED=$(git diff $COMMIT_RANGE --name-status packages/cms)
             if [ "${CMS_CHANGED}" != "" ]
             then
               echo "CMS repo was changed. Setting up build..."
