@@ -60,7 +60,7 @@ jobs:
               cd packages/api && echo "Deploy new build of RESTful API server"
             fi
 
-           if [ -e build-cms.job ]
+            if [ -e build-cms.job ]
             then
               cd packages/cms && echo "Deploy new build of CMS server"
             fi
