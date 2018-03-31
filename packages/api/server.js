@@ -18,6 +18,13 @@ server.route([
       models,
     }),
   },
+  {
+    method: 'GET',
+    path: '/time',
+    handler: () => ({
+      currentServerTime: new Date().toTimeString(),
+    }),
+  },
 ]);
 
 server.start()
