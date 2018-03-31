@@ -13,15 +13,12 @@ jobs:
           name: Install lerna
           command: sudo npm install -g lerna
       - run:
-          name: Check commit range in api
-          command: |
-            COMMIT_RANGE=$(echo $CIRCLE_COMPARE_URL | sed 's:^.*/compare/::g')
-            echo "Commit range: " $COMMIT_RANGE
-            echo `git diff $COMMIT_RANGE --name-status packages/api`
-      - run:
           name: Detect changes in api repo
           command: |
-            API_CHANGED=`git diff HEAD^ HEAD packages/api`
+            COMMIT_RANGE=$(echo $CIRCLE_COMPARE_URL | sed 's:^.*/compare/::g')
+            echo "Commit range:" $COMMIT_RANGE
+            echo `git diff $COMMIT_RANGE --name-status packages/api`
+            API_CHANGED=$(git diff $COMMIT_RANGE --name-status packages/api)
             if [ "${API_CHANGED}" != "" ]
             then
               echo "API repo was changed. Setting up build..."
@@ -30,7 +27,10 @@ jobs:
       - run:
           name: Detect changes in cms repo
           command: |
-            CMS_CHANGED=`git diff HEAD^ HEAD packages/cms`
+            COMMIT_RANGE=$(echo $CIRCLE_COMPARE_URL | sed 's:^.*/compare/::g')
+            echo "Commit range:" $COMMIT_RANGE
+            echo `git diff $COMMIT_RANGE --name-status packages/cms`
+            CMS_CHANGED=$(git diff $COMMIT_RANGE --name-status packages/cms)
             if [ "${CMS_CHANGED}" != "" ]
             then
               echo "CMS repo was changed. Setting up build..."
