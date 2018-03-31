@@ -10,6 +10,9 @@ jobs:
           name: List files
           command: ls -la ~/mono-repo
       - run:
+          name: Install lerna
+          command: sudo npm install -g lerna
+      - run:
           name: Detect changes
           command: |
             API_CHANGED=`git diff HEAD^ HEAD packages/api | grep -m 1 "packages/api"`
@@ -23,12 +26,6 @@ jobs:
             then
               touch build-cms.job
             fi
-      - run:
-          name: Root install
-          command: npm install
-      - run:
-          name: Install lerna
-          command: sudo npm install -g lerna
       - run:
           name: Test
           command: |
