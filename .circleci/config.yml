@@ -13,6 +13,12 @@ jobs:
           name: Install lerna
           command: sudo npm install -g lerna
       - run:
+          name: Check commit range
+          command: |
+            COMMIT_RANGE=$(echo $CIRCLE_COMPARE_URL | sed 's:^.*/compare/::g')
+            echo "Commit range: " $COMMIT_RANGE
+            echo `git diff $COMMIT_RANGE --name-status`
+      - run:
           name: Detect changes in api repo
           command: |
             API_CHANGED=`git diff HEAD^ HEAD packages/api`
