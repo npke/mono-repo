@@ -18,6 +18,7 @@ jobs:
             API_CHANGED=`git diff HEAD^ HEAD packages/api | grep -m 1 "packages/api"`
             if [ "${API_CHANGED}" != "" ]
             then
+              echo "API repo was changed. Setting up build..."
               touch build-api.job
             fi
       - run:
@@ -26,6 +27,7 @@ jobs:
             CMS_CHANGED=`git diff HEAD^ HEAD packages/cms | grep -m 1 "packages/cms"`
             if [ "${CMS_CHANGED}" != "" ]
             then
+              echo "CMS repo was changed. Setting up build..."
               touch build-cms.job
             fi
       - run:
@@ -35,12 +37,6 @@ jobs:
             then
               echo "Testing api repo..."
               cd packages/api && npm test
-            fi
-
-            if [ -e build-cms.job ]
-            then
-              echo "Testing cms repo..."
-              cd packages/cms && npm test
             fi
       - run:
           name: Test for cms repo
@@ -53,9 +49,9 @@ jobs:
       - run:
           name: Deploy api repo
           command: |
-            if [ -e build-cms.job ]
+            if [ -e build-api.job ]
             then
-              cd packages/cms && echo "Deploy new build of CMS server"
+              cd packages/cms && echo "Deploy new build of API server"
             fi
       - run:
           name: Deploy cms repo
