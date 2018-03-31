@@ -18,6 +18,13 @@ server.route([
       models,
     }),
   },
+  {
+    method: 'GET',
+    path: '/hello',
+    handler: () => ({
+      message: 'Hi',
+    }),
+  },
 ]);
 
 server.start()
