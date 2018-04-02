@@ -1,6 +1,6 @@
 {
   "name": "cms",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -13,8 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "app_models": "^1.0.0",
-    "app_services": "^1.0.0",
+    "app_models": "^0.0.1",
+    "app_services": "^0.0.1",
     "dotenv": "^5.0.1",
     "hapi": "^17.2.3"
   }
