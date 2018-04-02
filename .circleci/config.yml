@@ -63,8 +63,8 @@ jobs:
             curl -O https://bootstrap.pypa.io/get-pip.py
             python3.4 get-pip.py --user
             echo $(which pip)
-            pip=$(which pip)
-            $pip install awscli --upgrade --user
+            #pip=$(which pip)
+            #$pip install awscli --upgrade --user
       - run:
           name: Deploy api repo
           command: |
