@@ -20,7 +20,7 @@ server.route([
   },
   {
     method: 'GET',
-    path: '/time',
+    path: '/clock',
     handler: () => ({
       currentServerTime: new Date().toTimeString(),
     }),
