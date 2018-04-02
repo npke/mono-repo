@@ -1,3 +1,4 @@
 #!/bin/bash
-LERNA=$(which lerna)
-$LERNA bootstrap
+npm=$(which npm)
+$npm install
+./node_modules/.bin/lerna bootstrap
