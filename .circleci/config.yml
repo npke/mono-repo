@@ -15,6 +15,7 @@ jobs:
       - run:
           name: Detect changes in api repo
           command: |
+            ls
             rm -f build-*
             COMMIT_RANGE=$(echo $CIRCLE_COMPARE_URL | sed 's:^.*/compare/::g')
             echo "Commit range:" $COMMIT_RANGE
