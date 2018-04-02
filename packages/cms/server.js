@@ -25,6 +25,13 @@ server.route([
       message: 'Hi',
     }),
   },
+  {
+    method: 'GET',
+    path: '/clock',
+    handler: () => ({
+      currentServerTime: new Date().toTimeString(),
+    }),
+  },
 ]);
 
 server.start()
