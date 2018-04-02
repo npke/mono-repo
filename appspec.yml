@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/user-ec2/app
+    destination: /home/ec2-user/app
 hooks:
   AfterInstall:
     - location: scripts/code-deploy/after-install.sh
