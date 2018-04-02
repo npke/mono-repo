@@ -1,3 +1,4 @@
 #!/bin/bash
-cd /var/app/packages/api && npm start
-cd /var/app/packages/cms && npm start
+NPM=$(which npm)
+cd /var/app/packages/api && $NPM start
+cd /var/app/packages/cms && $NPM start

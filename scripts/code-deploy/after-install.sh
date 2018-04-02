@@ -1,2 +1,3 @@
 #!/bin/bash
-lerna bootstrap
+LERNA = $(which lerna)
+$LERNA bootstrap
