@@ -13,7 +13,7 @@ server.route([
     method: 'GET',
     path: '/',
     handler: () => ({
-      message: 'CMS is beautiful. Why?',
+      message: 'Hello World',
       services: { S3, Mailer },
       models,
     }),
