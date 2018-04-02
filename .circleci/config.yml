@@ -59,14 +59,16 @@ jobs:
           command: |
             if [ -e build-api.job ]
             then
-              cd packages/cms && echo "Deploy new build of API server"
+              echo "Deploy new api build"
+              aws deploy create-deployment --application-name Muno-Repo-Experiment --deployment-group-name Development --github-location repository=npke/mono-repo,commitId=$CIRCLE_SHA1
             fi
       - run:
           name: Deploy cms repo
           command: |
             if [ -e build-cms.job ]
             then
-              cd packages/cms && echo "Deploy new build of CMS server"
+              echo "Deploy new cms build"
+              aws deploy create-deployment --application-name Muno-Repo-Experiment --deployment-group-name Development --github-location repository=npke/mono-repo,commitId=$CIRCLE_SHA1
             fi
       - run:
           name: Clean up
