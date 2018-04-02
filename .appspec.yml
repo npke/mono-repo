@@ -1,0 +1,10 @@
+version: 0.0.1
+os: linux
+files:
+  - source: /
+  destination: /var/www/app
+hooks:
+  AfterInstall:
+    - location: scripts/code-deploy/after-install.sh
+  ApplicationStart:
+    - location: scripts/code-deploy/application-start.sh
