@@ -55,6 +55,14 @@ jobs:
               cd packages/cms && npm test
             fi
       - run:
+          name: Install AWS CLI
+          command: |
+            if [ -e build-cms.job || -e build-api.job ]
+            then
+              echo "Install AWS CLI"
+              pip install awscli --upgrade --user
+            fi
+      - run:
           name: Deploy api repo
           command: |
             if [ -e build-api.job ]
