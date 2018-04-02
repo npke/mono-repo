@@ -3,6 +3,6 @@
 
 cd /home/ec2-user/app
 
-NPM=$(which npm)
-cd packages/api && $NPM start
-cd packages/cms && $NPM start
+pm2=$(which pm2)
+cd packages/api && $pm2 start server.js
+cd packages/cms && $pm2 start server.js
