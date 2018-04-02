@@ -57,11 +57,8 @@ jobs:
       - run:
           name: Install AWS CLI
           command: |
-            if [ -e build-cms.job || -e build-api.job ]
-            then
-              echo "Install AWS CLI"
-              pip install awscli --upgrade --user
-            fi
+            echo "Install AWS CLI"
+            pip install awscli --upgrade --user
       - run:
           name: Deploy api repo
           command: |
