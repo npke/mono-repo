@@ -3,7 +3,6 @@ jobs:
   build:
     docker: 
       - image: circleci/node:8.10
-      - image: circleci/python:3.6
     working_directory: ~/mono-repo
     steps:
       - checkout
@@ -59,7 +58,7 @@ jobs:
           name: Install AWS CLI
           command: |
             echo "Install AWS CLI"
-            pip install awscli --upgrade --user
+            sudo apt-get -y -qq install awscli
       - run:
           name: Deploy api repo
           command: |
