@@ -76,7 +76,7 @@ jobs:
             if [ -e build-cms.job ]
             then
               echo "Deploy new cms build"
-              aws deploy create-deployment --application-name Muno-Repo-Experiment --deployment-group-name Development --github-location repository=npke/mono-repo,commitId=$CIRCLE_SHA1
+              aws deploy create-deployment --application-name Muno-Repo-Experiment --deployment-group-name Development --github-location repository=npke/mono-repo,commitId=$CIRCLE_SHA1 --region ap-southeast-1
             fi
       - run:
           name: Clean up
